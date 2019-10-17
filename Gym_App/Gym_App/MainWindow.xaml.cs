@@ -39,25 +39,45 @@ namespace Gym_App
                 {
                     var userToAdd = new User();
                     userToAdd.FirstName = txt_FirstName.Text;
+                    userToAdd.LastName = txt_LastName.Text;
+                    userToAdd.Address = txt_Address.Text;
+                    userToAdd.Email = txt_Email.Text;
+                    userToAdd.TelephoneNumber = txt_Mobile.Text;
                     userToAdd.UserId = txt_ClientId.Text;
+
+                    var healthInfoToAdd = new HealthRecord();
+                    healthInfoToAdd.UserId = CurrentUserId;
+                    healthInfoToAdd.Age = int.Parse(txt_Age.Text);
+                    healthInfoToAdd.Height = int.Parse(txt_Height.Text);
+                    healthInfoToAdd.Weight = int.Parse(txt_Weight.Text);
+
+                    //saving current id to static to keep adding data in another table about this user
                     CurrentUserId = txt_ClientId.Text;
+
+                    //update db
                     dbc.Users.Add(userToAdd);
+                    dbc.HealthRecords.Add(healthInfoToAdd);
                     dbc.SaveChanges();
-                    //txt_LastName.Text = int.Parse(txt_ClientId.Text).ToString();
 
                 }
 
             }
-            var HealthWindow = Window(); //create your new form.
-            
-            HealthWindow.Show(); //show the new form.
-            this.Close(); //only if you want to close the current form.
         }
 
         private void btn_generateId_Click(object sender, RoutedEventArgs e)
         {
             int randomNumber = random.Next(0, 100);
             txt_ClientId.Text = randomNumber.ToString();
+        }
+
+        private void TabController_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

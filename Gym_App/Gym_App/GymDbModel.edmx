@@ -30,7 +30,7 @@
           <Property Name="TelephoneNumber" Type="char" MaxLength="11" />
           <Property Name="Email" Type="nvarchar" MaxLength="40" />
         </EntityType>
-        <Association Name="FK__HealthRec__UserI__25869641">
+        <Association Name="FK__HealthRec__UserI__1273C1CD">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="HealthRecord" Type="Self.HealthRecord" Multiplicity="*" />
           <ReferentialConstraint>
@@ -45,7 +45,7 @@
         <EntityContainer Name="GymAppDBModelStoreContainer">
           <EntitySet Name="HealthRecord" EntityType="Self.HealthRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HealthRec__UserI__25869641" Association="Self.FK__HealthRec__UserI__25869641">
+          <AssociationSet Name="FK__HealthRec__UserI__1273C1CD" Association="Self.FK__HealthRec__UserI__1273C1CD">
             <End Role="Users" EntitySet="Users" />
             <End Role="HealthRecord" EntitySet="HealthRecord" />
           </AssociationSet>
@@ -68,7 +68,7 @@
           <Property Name="BMI" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="KCAL" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="TargetBMI" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="User" Relationship="Self.FK__HealthRec__UserI__25869641" FromRole="HealthRecord" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK__HealthRec__UserI__1273C1CD" FromRole="HealthRecord" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -80,9 +80,9 @@
           <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="TelephoneNumber" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HealthRecords" Relationship="Self.FK__HealthRec__UserI__25869641" FromRole="Users" ToRole="HealthRecord" />
+          <NavigationProperty Name="HealthRecords" Relationship="Self.FK__HealthRec__UserI__1273C1CD" FromRole="Users" ToRole="HealthRecord" />
         </EntityType>
-        <Association Name="FK__HealthRec__UserI__25869641">
+        <Association Name="FK__HealthRec__UserI__1273C1CD">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="HealthRecord" Type="Self.HealthRecord" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +97,7 @@
         <EntityContainer Name="GymAppDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HealthRecords" EntityType="Self.HealthRecord" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__HealthRec__UserI__25869641" Association="Self.FK__HealthRec__UserI__25869641">
+          <AssociationSet Name="FK__HealthRec__UserI__1273C1CD" Association="Self.FK__HealthRec__UserI__1273C1CD">
             <End Role="Users" EntitySet="Users" />
             <End Role="HealthRecord" EntitySet="HealthRecords" />
           </AssociationSet>
