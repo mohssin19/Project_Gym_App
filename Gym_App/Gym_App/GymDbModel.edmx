@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GymAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HealthRecord">
+          <Key>
+            <PropertyRef Name="HealthRecordId" />
+          </Key>
+          <Property Name="HealthRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="3" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Weight" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="Height" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="BMR" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="BMI" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KCAL" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TargetBMI" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="25" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="25" />
+          <Property Name="Address" Type="nvarchar" MaxLength="60" />
+          <Property Name="TelephoneNumber" Type="char" MaxLength="11" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK__HealthRec__UserI__25869641">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="HealthRecord" Type="Self.HealthRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HealthRecord">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GymAppDBModelStoreContainer">
+          <EntitySet Name="HealthRecord" EntityType="Self.HealthRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HealthRec__UserI__25869641" Association="Self.FK__HealthRec__UserI__25869641">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HealthRecord" EntitySet="HealthRecord" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GymAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HealthRecord">
+          <Key>
+            <PropertyRef Name="HealthRecordId" />
+          </Key>
+          <Property Name="HealthRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Weight" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="BMR" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="BMI" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KCAL" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TargetBMI" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="User" Relationship="Self.FK__HealthRec__UserI__25869641" FromRole="HealthRecord" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HealthRecords" Relationship="Self.FK__HealthRec__UserI__25869641" FromRole="Users" ToRole="HealthRecord" />
+        </EntityType>
+        <Association Name="FK__HealthRec__UserI__25869641">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="HealthRecord" Type="Self.HealthRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="HealthRecord">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GymAppDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HealthRecords" EntityType="Self.HealthRecord" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__HealthRec__UserI__25869641" Association="Self.FK__HealthRec__UserI__25869641">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HealthRecord" EntitySet="HealthRecords" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GymAppDBModelStoreContainer" CdmEntityContainer="GymAppDBEntities">
+          <EntitySetMapping Name="HealthRecords">
+            <EntityTypeMapping TypeName="GymAppDBModel.HealthRecord">
+              <MappingFragment StoreEntitySet="HealthRecord">
+                <ScalarProperty Name="HealthRecordId" ColumnName="HealthRecordId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="BMR" ColumnName="BMR" />
+                <ScalarProperty Name="BMI" ColumnName="BMI" />
+                <ScalarProperty Name="KCAL" ColumnName="KCAL" />
+                <ScalarProperty Name="TargetBMI" ColumnName="TargetBMI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GymAppDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
