@@ -31,37 +31,7 @@ namespace Gym_App
 
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
         {
-
-            using(var dbc = new GymAppDBEntities())
-            {
-                var existingUser = dbc.Users.Where(u => u.UserId.ToString() == txt_ClientId.Text).FirstOrDefault();
-                if(existingUser == null)
-                {
-                    var userToAdd = new User();
-                    userToAdd.FirstName = txt_FirstName.Text;
-                    userToAdd.LastName = txt_LastName.Text;
-                    userToAdd.Address = txt_Address.Text;
-                    userToAdd.Email = txt_Email.Text;
-                    userToAdd.TelephoneNumber = txt_Mobile.Text;
-                    userToAdd.UserId = txt_ClientId.Text;
-
-                    var healthInfoToAdd = new HealthRecord();
-                    healthInfoToAdd.UserId = CurrentUserId;
-                    healthInfoToAdd.Age = int.Parse(txt_Age.Text);
-                    healthInfoToAdd.Height = int.Parse(txt_Height.Text);
-                    healthInfoToAdd.Weight = int.Parse(txt_Weight.Text);
-
-                    //saving current id to static to keep adding data in another table about this user
-                    CurrentUserId = txt_ClientId.Text;
-
-                    //update db
-                    dbc.Users.Add(userToAdd);
-                    dbc.HealthRecords.Add(healthInfoToAdd);
-                    dbc.SaveChanges();
-
-                }
-
-            }
+            Tab2.IsSelected = true;
         }
 
         private void btn_generateId_Click(object sender, RoutedEventArgs e)
@@ -78,6 +48,41 @@ namespace Gym_App
         private void TextBox_TextChanged(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btn_SaveAll_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dbc = new GymAppDBEntities())
+            {
+                var existingUser = dbc.Users.Where(u => u.UserId.ToString() == txt_ClientId.Text).FirstOrDefault();
+                if (existingUser == null)
+                {
+                    var userToAdd = new User();
+                    userToAdd.FirstName = txt_FirstName.Text;
+                    userToAdd.LastName = txt_LastName.Text;
+                    userToAdd.Address = txt_Address.Text;
+                    userToAdd.Email = txt_Email.Text;
+                    userToAdd.TelephoneNumber = txt_Mobile.Text;
+                    //userToAdd.UserId = txt_ClientId.Text;
+
+                    var healthInfoToAdd = new HealthRecord();
+                    healthInfoToAdd.UserId = userToAdd.UserId;
+                    healthInfoToAdd.Age = int.Parse(txt_Age.Text);
+                    healthInfoToAdd.Height = decimal.Parse(txt_Height.Text);
+                    healthInfoToAdd.Weight = decimal.Parse(txt_Weight.Text);
+
+
+                    //update db
+                    dbc.Users.Add(userToAdd);
+                    dbc.HealthRecords.Add(healthInfoToAdd);
+                    dbc.SaveChanges();
+
+                    MessageBox.Show($"User: {userToAdd.FirstName} , successfully added!");
+
+                }
+
+
+            }
         }
     }
 }

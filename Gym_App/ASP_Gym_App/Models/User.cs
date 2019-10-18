@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gym_App
+namespace ASP_Gym_App.Models
 {
     using System;
     using System.Collections.Generic;

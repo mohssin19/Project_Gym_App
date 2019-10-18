@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6aab9a6d91a4f759b6c9f7d87726001" Name="Diagram1">
+      <Diagram DiagramId="6616bb45ae6a42a6a48a979ddd342e91" Name="Diagram1">
         <EntityTypeShape EntityType="GymAppDBModel.HealthRecord" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="GymAppDBModel.User" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="GymAppDBModel.FK__HealthRec__UserI__36B12243" ManuallyRouted="false" />

@@ -86,16 +86,9 @@
     <Compile Include="HealthRecord.cs">
       <DependentUpon>GymDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HealthWindow.xaml.cs">
-      <DependentUpon>HealthWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>GymDbModel.tt</DependentUpon>
     </Compile>
-    <Page Include="HealthWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
