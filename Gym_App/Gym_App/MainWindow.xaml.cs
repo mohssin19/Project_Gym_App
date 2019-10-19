@@ -20,7 +20,15 @@ namespace Gym_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string CurrentUserId = null;
+        static List<User> Users = new List<User>();
+        static List<HealthRecord> HealthRecords = new List<HealthRecord>();
+
+        public static int CurrentUserId;
+        public static int CurrentHealthRecordId;
+        public static double CurrentAge;
+        public static double CurrentWeight;
+        public static double CurrentHeight;
+        public static double CurrentBMI;
 
 
         public MainWindow()
@@ -32,11 +40,70 @@ namespace Gym_App
             // Manual Tab Control On main window
             Tab1.IsSelected = true;
             Tab2.IsSelected = false;
+
+            // Loading List on intialize
+            //List<object> allRecords = new List<object>();
+            
+            using (var db = new GymAppDBEntities())
+            {
+                var allRecords = db.Users.Join(db.HealthRecords, u => u.UserId, hr => 
+                hr.UserId, (u, hr) => new { u, hr }).Select(ar => 
+                new {UserId = ar.u.UserId, 
+                    FirstName = ar.u.FirstName, LastName = ar.u.LastName, 
+                    Address = ar.u.Address, Email = ar.u.Email, TelephoneNumber = ar.u.TelephoneNumber,
+                    HealthRecordId = ar.hr.HealthRecordId,
+                    Age = ar.hr.Age, Weight = ar.hr.Weight, Height = ar.hr.Height,
+                    BMI = ar.hr.BMI, BMR = ar.hr.BMR,
+                })
+                .ToList();
+                //Users = db.Users.ToList();
+                //HealthRecords = db.HealthRecords.ToList();
+                AllMembersView.ItemsSource = allRecords;
+            }
+
+            // manual method
+            //rabbits.ForEach(rabbit => ListBoxRabbits.Items.Add(rabbit))
+
+         
         }
 
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
         {
             Tab2.IsSelected = true;
+
+            using (var dbc = new GymAppDBEntities())
+            {
+                //adding a user
+                var userToAdd = new User();
+                userToAdd.FirstName = txt_FirstName.Text;
+                userToAdd.LastName = txt_LastName.Text;
+                userToAdd.Address = txt_Address.Text;
+                userToAdd.Email = txt_Email.Text;
+                userToAdd.TelephoneNumber = txt_Mobile.Text;
+
+                
+                //adding a health record
+                var healthInfoToAdd = new HealthRecord();
+                healthInfoToAdd.UserId = userToAdd.UserId;
+                healthInfoToAdd.Age = int.Parse(txt_Age.Text);
+                healthInfoToAdd.Height = decimal.Parse(txt_Height.Text);
+                healthInfoToAdd.Weight = decimal.Parse(txt_Weight.Text);
+
+                //update db
+                dbc.Users.Add(userToAdd);
+                dbc.HealthRecords.Add(healthInfoToAdd);
+                dbc.SaveChanges();
+
+                //saving locally
+                CurrentHealthRecordId = healthInfoToAdd.HealthRecordId;
+                CurrentUserId = userToAdd.UserId;
+                CurrentAge = (double)healthInfoToAdd.Age;
+                CurrentWeight = (double)healthInfoToAdd.Weight;
+                CurrentHeight = (double)healthInfoToAdd.Height;
+
+                MessageBox.Show($"User: {userToAdd.FirstName} , successfully added!");
+            }
+
         }
 
 
@@ -60,56 +127,34 @@ namespace Gym_App
         {
             using (var dbc = new GymAppDBEntities())
             {
-                var userToAdd = new User();
-                userToAdd.FirstName = txt_FirstName.Text;
-                userToAdd.LastName = txt_LastName.Text;
-                userToAdd.Address = txt_Address.Text;
-                userToAdd.Email = txt_Email.Text;
-                userToAdd.TelephoneNumber = txt_Mobile.Text;
-                //userToAdd.UserId = txt_ClientId.Text;
+               
+                User CurrentUser = dbc.Users.Where(u => u.UserId == CurrentUserId).FirstOrDefault<User>();
+                HealthRecord CurrentRecord = dbc.HealthRecords.Where(r => r.HealthRecordId == CurrentHealthRecordId).FirstOrDefault<HealthRecord>();
 
-                var healthInfoToAdd = new HealthRecord();
-                healthInfoToAdd.UserId = userToAdd.UserId;
-                healthInfoToAdd.Age = int.Parse(txt_Age.Text);
-                healthInfoToAdd.Height = decimal.Parse(txt_Height.Text);
-                healthInfoToAdd.Weight = decimal.Parse(txt_Weight.Text);
+               // MessageBox.Show(CurrentHealthRecordId.ToString());
 
-                // BMI Calculation Formula
-                double bmi = Math.Round((((double)healthInfoToAdd.Weight / (double)healthInfoToAdd.Height / (double)healthInfoToAdd.Height) * 10000),2);
-                healthInfoToAdd.BMI = (decimal)bmi;
-                BMI_Value.Text = healthInfoToAdd.BMI.ToString();
+                double bmi = Math.Round(((CurrentWeight / CurrentHeight / CurrentHeight) * 10000), 2);
+                CurrentRecord.BMI = (decimal)bmi;
+                BMI_Value.Text = CurrentRecord.BMI.ToString();
+
 
                 // BMR Calculation Formula
-
-
                 if (rdo_Female.IsChecked == true)
                 {
-                    double bmr = Math.Round(447.593 + (9.247 * (double)healthInfoToAdd.Weight) + (3.098 * (double)healthInfoToAdd.Height) - (4.330 * (double)healthInfoToAdd.Age), 2);
-                    healthInfoToAdd.BMR = (decimal)bmr;
-                    BMR_Value.Text = healthInfoToAdd.BMR.ToString();
+                    double bmr = Math.Round(447.593 + (9.247 * CurrentWeight) + (3.098 * CurrentHeight) - (4.330 * CurrentAge), 2);
+                    CurrentRecord.BMR = (decimal)bmr;
+                    BMR_Value.Text = CurrentRecord.BMR.ToString();
                 }
                 else if (rdo_Male.IsChecked == true)
                 {
-                    double bmr = Math.Round(88.362 + (13.397 * (double)healthInfoToAdd.Weight) + (4.799 * (double)healthInfoToAdd.Height) - (5.677 * (double)healthInfoToAdd.Age), 2);
-                    healthInfoToAdd.BMR = (decimal)bmr;
-                    BMR_Value.Text = healthInfoToAdd.BMR.ToString();
+                    double bmr = Math.Round(88.362 + (13.397 * CurrentWeight) + (4.799 * CurrentHeight) - (5.677 * CurrentAge), 2);
+                    CurrentRecord.BMR = (decimal)bmr;
+                    BMR_Value.Text = CurrentRecord.BMR.ToString();
                 }
-                else if (rdo_Female.IsChecked == false && rdo_Male.IsChecked == false)
-                {
-                    MessageBox.Show("Invalid! Please select Male or Female Options");
-                    txt_Age.Clear();
-                    txt_Age.Focus();
-                    txt_Height.Clear();
-                    txt_Weight.Clear();
-                    BMI_Value.Clear();
-                    BMR_Value.Clear();
 
-                    //update db
-                    dbc.Users.Add(userToAdd);
-                    dbc.HealthRecords.Add(healthInfoToAdd);
-                    dbc.SaveChanges();
-                    MessageBox.Show($"User: {userToAdd.FirstName} , successfully added!");
-                }
+
+                dbc.SaveChanges();
+                MessageBox.Show($"User: {CurrentUser.FirstName} , health calculations added!");
             }
         }
 
@@ -128,6 +173,26 @@ namespace Gym_App
         {
      
             
+        }
+
+        private void lbl_BMR_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BMR_INFO.Visibility = Visibility.Visible;
+        }
+
+        private void lbl_BMR_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BMR_INFO.Visibility = Visibility.Hidden;
+        }
+
+        private void rdo_Opt1_Checked(object sender, RoutedEventArgs e)
+        {
+            using (var dbc = new GymAppDBEntities())
+            {
+                HealthRecord CurrentRecord = dbc.HealthRecords.Where(r => r.HealthRecordId == CurrentHealthRecordId).FirstOrDefault<HealthRecord>();
+                //double kcal = CurrentRecord.BMI * 1.2;
+            }
+
         }
     }
 }
