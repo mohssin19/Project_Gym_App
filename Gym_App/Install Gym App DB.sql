@@ -10,7 +10,7 @@ go
 use GymAppDB
 
 create table Users(
-UserId NVARCHAR(3) NOT NULL PRIMARY KEY,
+UserId int IDENTITY (1000,1) NOT NULL PRIMARY KEY,
 FirstName nvarchar(25) null,
 LastName nvarchar(25) null,
 [Address] nvarchar(60) null,
@@ -20,7 +20,7 @@ Email nvarchar(40) null,
 
 create table HealthRecord(
 HealthRecordId INT NOT NULL IDENTITY PRIMARY KEY,
-UserId NVARCHAR(3) null Foreign key references Users(UserId),
+UserId INT null Foreign key references Users(UserId),
 Age int null,
 [Weight] decimal(3,2) null,
 Height decimal(3,2) null,

@@ -20,13 +20,14 @@ namespace Gym_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Random random = new Random();
         public static string CurrentUserId = null; 
         
 
         public MainWindow()
         {
             InitializeComponent();
+            Tab1.IsSelected = true;
+            Tab2.IsSelected = false;
         }
 
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
@@ -34,11 +35,7 @@ namespace Gym_App
             Tab2.IsSelected = true;
         }
 
-        private void btn_generateId_Click(object sender, RoutedEventArgs e)
-        {
-            int randomNumber = random.Next(0, 100);
-            txt_ClientId.Text = randomNumber.ToString();
-        }
+        
 
         private void TabController_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -54,34 +51,31 @@ namespace Gym_App
         {
             using (var dbc = new GymAppDBEntities())
             {
-                var existingUser = dbc.Users.Where(u => u.UserId.ToString() == txt_ClientId.Text).FirstOrDefault();
-                if (existingUser == null)
-                {
-                    var userToAdd = new User();
-                    userToAdd.FirstName = txt_FirstName.Text;
-                    userToAdd.LastName = txt_LastName.Text;
-                    userToAdd.Address = txt_Address.Text;
-                    userToAdd.Email = txt_Email.Text;
-                    userToAdd.TelephoneNumber = txt_Mobile.Text;
-                    //userToAdd.UserId = txt_ClientId.Text;
 
-                    var healthInfoToAdd = new HealthRecord();
-                    healthInfoToAdd.UserId = userToAdd.UserId;
-                    healthInfoToAdd.Age = int.Parse(txt_Age.Text);
-                    healthInfoToAdd.Height = decimal.Parse(txt_Height.Text);
-                    healthInfoToAdd.Weight = decimal.Parse(txt_Weight.Text);
+                var userToAdd = new User();
+                userToAdd.FirstName = txt_FirstName.Text;
+                userToAdd.LastName = txt_LastName.Text;
+                userToAdd.Address = txt_Address.Text;
+                userToAdd.Email = txt_Email.Text;
+                userToAdd.TelephoneNumber = txt_Mobile.Text;
+                //userToAdd.UserId = txt_ClientId.Text;
 
+                var healthInfoToAdd = new HealthRecord();
+                healthInfoToAdd.UserId = userToAdd.UserId;
+                healthInfoToAdd.Age = int.Parse(txt_Age.Text);
+                healthInfoToAdd.Height = decimal.Parse(txt_Height.Text);
+                healthInfoToAdd.Weight = decimal.Parse(txt_Weight.Text);
 
-                    //update db
-                    dbc.Users.Add(userToAdd);
-                    dbc.HealthRecords.Add(healthInfoToAdd);
-                    dbc.SaveChanges();
+                // BMI Calculation Formula
+                //healthInfoToAdd.BMI = (healthInfoToAdd.Weight / healthInfoToAdd.Height / healthInfoToAdd.Height) * 10000;
+                //BMI_Value.Text = healthInfoToAdd.BMI.ToString();
 
-                    MessageBox.Show($"User: {userToAdd.FirstName} , successfully added!");
+                //update db
+                dbc.Users.Add(userToAdd);
+                dbc.HealthRecords.Add(healthInfoToAdd);
+                dbc.SaveChanges();
 
-                }
-
-
+                //MessageBox.Show($"User: {userToAdd.FirstName} , successfully added!");
             }
         }
     }
