@@ -15,49 +15,49 @@
             <ColumnDefinition Width="274*"/>
         </Grid.ColumnDefinitions>
         <TabControl x:Name="Tab" SelectionChanged="TabController_SelectionChanged" Margin="0,0,-0.4,0" Background="#CECED9" Grid.ColumnSpan="2" >
-            <TabItem x:Name="Tab2" Visibility="Visible" Header="Calculations" Margin="110,0,-109.6,0">
-                <Border CornerRadius="3" HorizontalAlignment="Center" Width="Auto" Height="Auto" VerticalAlignment="Center" Background="#FF1E64AA" >
-
-                    <Grid >
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="134.4" />
-                            <ColumnDefinition Width="118*" />
-                            <ColumnDefinition Width="189*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" MinHeight="84" />
-                            <RowDefinition Height="Auto" MinHeight="54.4" />
-                            <RowDefinition Height="29*" />
-                            <RowDefinition Height="22*"/>
-                            <RowDefinition Height="30*"/>
-                            <RowDefinition Height="26*"/>
-                        </Grid.RowDefinitions>
-                        <Button x:Name="btn_SaveAll" Content="Save All" HorizontalAlignment="Left" Margin="270.6,23.2,0,-0.2" Grid.Row="5" VerticalAlignment="Top" Width="107" Height="29" Grid.Column="2" Click="btn_SaveAll_Click"/>
-                        <RadioButton x:Name="rdo_Male" Content="Male" Margin="21.6,25,134.4,34" Grid.Column="1" FontSize="18"/>
-                        <RadioButton x:Name="rdo_Female" Content="Female" Margin="23,25,3.4,30" FontSize="18" Checked="rdo_Female_Checked" RenderTransformOrigin="-2.887,0.597"/>
-                        <TextBox x:Name="BMI_Value" Margin="109,4.6,169.4,15.8" FontSize="22" UndoLimit="100" Grid.ColumnSpan="2" Grid.Row="2"/>
-                        <Label x:Name="lbl_BMI" Content="BMI" Margin="23,5.6,49.4,15.8" FontSize="20" MouseEnter="lbl_BMI_MouseEnter" MouseLeave="lbl_BMI_MouseLeave" RenderTransformOrigin="-2.432,0.716" Grid.Row="2" />
-                        <Label x:Name="BMI_INFO"  Content="The body mass index (BMI) is a measure that uses your height &#xD;&#xA;and weight to work out if your weight is healthy." Margin="23,47.6,0.4,9.8" Grid.Row="2" Grid.RowSpan="2" Visibility="Visible" Grid.ColumnSpan="2"/>
-                        <TextBox x:Name="BMR_Value" Margin="109,3.2,169.4,16.8" RenderTransformOrigin="1.752,1.851" Grid.ColumnSpan="2" Grid.Row="4" />
-                        <Label x:Name="lbl_BMR" Content="BMR" Margin="23,3.2,56.4,17.8" FontSize="20" Grid.Row="4" MouseEnter="lbl_BMR_MouseEnter" MouseLeave="lbl_BMR_MouseLeave"/>
-                        <Label x:Name="BMR_INFO"  Content="Basal metabolic rate is the number of calories your body needs&#xD;&#xA; to accomplish its most basic (basal) life-sustaining functions." Visibility="Visible" Height="46" Width="347" Grid.ColumnSpan="2" Margin="23,42.2,0.4,23.8" Grid.Row="4" Grid.RowSpan="2"/>
-                        <RadioButton x:Name="rdo_Opt1" Content="Little to no exercise" VerticalAlignment="Top" Checked="rdo_Opt1_Checked" Margin="138.2,22,39.4,0" Height="18" Grid.Column="2"/>
-                        <RadioButton x:Name="rdo_Opt2" Content="Light exercise" Margin="138.2,45,80.4,49.8" Grid.Column="2" />
-                        <RadioButton x:Name="rdo_Opt3" Content="Moderate exercise" HorizontalAlignment="Left" Margin="138.2,67,0,0" VerticalAlignment="Top" Height="18" Width="145" Grid.Column="2"/>
-                        <RadioButton x:Name="rdo_Opt4" Content="Heavy exercise" HorizontalAlignment="Left" Margin="138.2,90,0,0" VerticalAlignment="Top" Height="18" Width="123" Grid.Column="2"/>
-                        <RadioButton x:Name="rdo_Opt5" Content="2+ per day" HorizontalAlignment="Left" Margin="138.2,10,0,0" VerticalAlignment="Top" Height="18" Width="94" Grid.Column="2" Grid.Row="1"/>
-                        <Label x:Name="lbl_Kcal" Content="Kcal:" Grid.Column="2" HorizontalAlignment="Left" Margin="138.2,4.6,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="198.2,3.6,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
+            <TabItem x:Name="Tab2" Visibility="Visible" Header="Calculations" Margin="340,0,-339.8,0">
 
 
-                    </Grid>
-                </Border>
-            </TabItem>
-
-            <TabItem x:Name="Tab1" Visibility="Visible" Header="Sign Up" Margin="-76.2,0,0,0" HorizontalAlignment="Left" Width="66">
                 <Grid >
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="134.4" />
+                        <ColumnDefinition Width="118*" />
+                        <ColumnDefinition Width="189*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="84" />
+                        <RowDefinition Height="Auto" MinHeight="54.4" />
+                        <RowDefinition Height="29*" />
+                        <RowDefinition Height="22*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="26*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btn_SaveAll" Content="Save All" HorizontalAlignment="Left" Margin="270.6,23.2,0,-0.2" Grid.Row="5" VerticalAlignment="Top" Width="107" Height="29" Grid.Column="2" Click="btn_SaveAll_Click"/>
+                    <RadioButton x:Name="rdo_Male" Content="Male" Margin="21.6,25,134.4,34" Grid.Column="1" FontSize="18"/>
+                    <RadioButton x:Name="rdo_Female" Content="Female" Margin="23,25,3.4,30" FontSize="18" Checked="rdo_Female_Checked" RenderTransformOrigin="-2.887,0.597"/>
+                    <TextBox x:Name="BMI_Value" Margin="109,4.6,169.4,15.8" FontSize="22" UndoLimit="100" Grid.ColumnSpan="2" Grid.Row="2"/>
+                    <Label x:Name="lbl_BMI" Content="BMI" Margin="23,5.6,49.4,15.8" FontSize="20" MouseEnter="lbl_BMI_MouseEnter" MouseLeave="lbl_BMI_MouseLeave" RenderTransformOrigin="-2.432,0.716" Grid.Row="2" />
+                    <Label x:Name="BMI_INFO"  Content="The body mass index (BMI) is a measure that uses your height &#xD;&#xA;and weight to work out if your weight is healthy." Margin="23,47.6,0.4,9.8" Grid.Row="2" Grid.RowSpan="2" Visibility="Visible" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="BMR_Value" Margin="109,3.2,169.4,16.8" RenderTransformOrigin="1.752,1.851" Grid.ColumnSpan="2" Grid.Row="4" />
+                    <Label x:Name="lbl_BMR" Content="BMR" Margin="23,3.2,56.4,17.8" FontSize="20" Grid.Row="4" MouseEnter="lbl_BMR_MouseEnter" MouseLeave="lbl_BMR_MouseLeave"/>
+                    <Label x:Name="BMR_INFO"  Content="Basal metabolic rate is the number of calories your body needs&#xD;&#xA; to accomplish its most basic (basal) life-sustaining functions." Visibility="Visible" Height="46" Width="347" Grid.ColumnSpan="2" Margin="23,42.2,0.4,23.8" Grid.Row="4" Grid.RowSpan="2"/>
+                    <RadioButton x:Name="rdo_Opt1" Content="Little to no exercise" VerticalAlignment="Top" Checked="rdo_Opt1_Checked" Margin="138.2,22,39.4,0" Height="18" Grid.Column="2"/>
+                    <RadioButton x:Name="rdo_Opt2" Content="Light exercise" Margin="138.2,45,80.4,49.8" Grid.Column="2" Checked="rdo_Opt2_Checked" />
+                    <RadioButton x:Name="rdo_Opt3" Content="Moderate exercise" HorizontalAlignment="Left" Margin="138.2,67,0,0" VerticalAlignment="Top" Height="18" Width="145" Grid.Column="2" Checked="rdo_Opt3_Checked"/>
+                    <RadioButton x:Name="rdo_Opt4" Content="Heavy exercise" HorizontalAlignment="Left" Margin="138.2,90,0,0" VerticalAlignment="Top" Height="18" Width="123" Grid.Column="2" Checked="rdo_Opt4_Checked"/>
+                    <RadioButton x:Name="rdo_Opt5" Content="2+ per day" HorizontalAlignment="Left" Margin="138.2,10,0,0" VerticalAlignment="Top" Height="18" Width="94" Grid.Column="2" Grid.Row="1" Checked="rdo_Opt5_Checked"/>
+                    <Label x:Name="lbl_Kcal" Content="Kcal:" Grid.Column="2" HorizontalAlignment="Left" Margin="138.2,4.6,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="20" MouseEnter="lbl_Kcal_MouseEnter" MouseLeave="lbl_Kcal_MouseLeave"/>
+                    <TextBox x:Name="txt_Kcal" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="209.2,11.6,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="70"/>
+                    <Label x:Name="lbl_Kcal_Info" Content="Calculating the recommended&#xD;&#xA;daily kilocalorie intake to &#xD;&#xA;maintain current weight." Grid.Column="2" HorizontalAlignment="Left" Margin="138.4,0.2,0,0" Grid.Row="3" VerticalAlignment="Top" Height="47" Width="225"/>
+
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem x:Name="Tab1" Visibility="Visible" Header="Sign Up" Margin="22.6,0,-22.4,0" HorizontalAlignment="Left" Width="75">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="216" />
                         <ColumnDefinition Width="210*" />
@@ -73,38 +73,38 @@
                         <RowDefinition Height="50*"/>
                         <RowDefinition Height="62*"/>
                     </Grid.RowDefinitions>
-                    <Label Content="First Name:" Margin="74,14,0,3.6" FontSize="20"/>
+                    <Label Content="First Name:" Margin="64,12,31.2,7.6" FontSize="20" Width="140" Height="30"/>
 
-                    <Label Margin="74,6.4,185.4,5.4" FontSize="20" Grid.Row="1" RenderTransformOrigin="0.596,0.5" Grid.ColumnSpan="2">
+                    <Label Margin="64,10.4,31.2,9.2" FontSize="20" Grid.Row="1" RenderTransformOrigin="0.596,0.5" Width="140" Height="30">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
                                 <SkewTransform/>
-                                <RotateTransform Angle="0.393"/>
+                                <RotateTransform Angle="-0.169"/>
                                 <TranslateTransform X="-0.001" Y="0.112"/>
                             </TransformGroup>
                         </Label.RenderTransform> Last Name:
                     </Label>
-                    <TextBox x:Name="txt_LastName" Grid.Column="1" Margin="0,6.4,18.4,9.4" Grid.Row="1" />
-                    <TextBox x:Name="txt_FirstName" Grid.Column="1" Margin="0,0,18.4,18.6" FontSize="18" />
-                    <Label Grid.Row="2" Margin="74,17.6,32,83.2" FontSize="20">Address:</Label>
-                    <TextBox x:Name="txt_Address" Grid.Row="2" Grid.Column="1" AcceptsReturn="True" Margin="0,9.6,18.4,27.2" FontSize="18" />
-                    <Label Content="Mobile:" Margin="74,10,32,6" Grid.Row="4" FontSize="20"/>
+                    <TextBox x:Name="txt_LastName" Margin="2.8,19.4,0.4,0.2" Grid.Row="1" Width="200" Height="30" Grid.Column="1" />
+                    <TextBox x:Name="txt_FirstName" Margin="235,20,3.4,49.2" FontSize="18" Width="200" Height="30" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                    <Label Grid.Row="2" Margin="74,19.8,31.2,86.2" FontSize="20" Width="130" Height="30">Address:</Label>
+                    <TextBox x:Name="txt_Address" Grid.Row="2" Grid.Column="1" AcceptsReturn="True" Margin="0,9.6,18.4,27.2" FontSize="18" Width="200" />
+                    <Label Content="Mobile:" Margin="74,19,31.2,3" Grid.Row="4" FontSize="20" Width="130" Height="30"/>
                     <TextBox x:Name="txt_Email" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,9.8,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
                     <Button x:Name="btn_Submit" Content="Next" Grid.Column="3" HorizontalAlignment="Left" Margin="169.6,10,0,0" VerticalAlignment="Top" Width="71" Click="btn_Submit_Click" Height="50" Grid.Row="5" FontFamily="Segoe UI Black" Grid.ColumnSpan="2"/>
-                    <Label Content="Email:" Margin="74,4.8,32,5" Grid.Row="3" FontSize="20" RenderTransformOrigin="0.536,0.823"/>
-                    <TextBox x:Name="txt_Mobile" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,10,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-                    <Label Content="Age:" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Height="35" Margin="0,11,54.8,3.6" Width="130" RenderTransformOrigin="0.508,0.151" Grid.Column="3"/>
-                    <TextBox x:Name="txt_Age" FontSize="20" Margin="0,7,36,3.6" Grid.Column="4"/>
-                    <TextBox x:Name="txt_Height" HorizontalAlignment="Left" Height="35" Margin="0,13.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.Column="4" Grid.Row="1"/>
-                    <Label Content="Height in CM:" HorizontalAlignment="Left" Margin="0.6,13.4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.411,-0.016" Width="164" Height="35" FontSize="20" Grid.Column="3" Grid.Row="1"/>
+                    <Label Content="Email:" Margin="74,6.8,31.2,8" Grid.Row="3" FontSize="20" RenderTransformOrigin="0.536,0.823" Width="130" Height="30"/>
+                    <TextBox x:Name="txt_Mobile" HorizontalAlignment="Left" Height="30" Margin="235,19,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Grid.ColumnSpan="2"/>
+                    <Label Content="Age:" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Height="35" Margin="0,12,128,2.6" Width="130" RenderTransformOrigin="0.508,0.151" Grid.Column="3" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txt_Age" FontSize="20" Margin="9,11,27,49.2" Grid.Column="4" Grid.RowSpan="2"/>
+                    <TextBox x:Name="txt_Height" HorizontalAlignment="Left" Height="35" Margin="9,14.4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.Column="4" Grid.Row="1"/>
+                    <Label Content="Height in CM:" HorizontalAlignment="Left" Margin="5.2,18.4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.411,-0.016" Width="164" Height="35" FontSize="20" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2"/>
                     <Label Content="Weight in KG:" HorizontalAlignment="Left" Margin="0.6,46.6,0,54.2" Width="164" FontSize="20" Grid.Column="3" Grid.Row="2"/>
-                    <TextBox x:Name="txt_Weight" Grid.Column="4" HorizontalAlignment="Left" Height="35" Margin="0,47.6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" TextChanged="TextBox_TextChanged" Grid.Row="2" RenderTransformOrigin="0.496,0.469"/>
+                    <TextBox x:Name="txt_Weight" Grid.Column="4" HorizontalAlignment="Left" Height="35" Margin="10,37.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" TextChanged="TextBox_TextChanged" Grid.Row="2" RenderTransformOrigin="0.496,0.469"/>
 
                 </Grid>
             </TabItem>
 
-            <TabItem x:Name="Dashboard" Visibility="Visible" Header="Records" Margin="55.4,0,-65.6,0">
+            <TabItem x:Name="Tab3" Visibility="Visible" Header="Records" Margin="0,0,-272.8,0" HorizontalAlignment="Right" Width="73">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -148,6 +148,60 @@
 
                 </Grid>
             </TabItem>
+
+            <TabItem x:Name="Tab0" Visibility="Visible" Header="Sign Up" Margin="22.6,0,-22.4,0" HorizontalAlignment="Left" Width="75">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="216" />
+                        <ColumnDefinition Width="210*" />
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="185*"/>
+                        <ColumnDefinition Width="136*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="48" />
+                        <RowDefinition Height="Auto" MinHeight="46.4" />
+                        <RowDefinition Height="69*" />
+                        <RowDefinition Height="69*"/>
+                        <RowDefinition Height="46*"/>
+                        <RowDefinition Height="53*"/>
+                        <RowDefinition Height="66*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Username :" HorizontalAlignment="Left" Margin="96,9.6,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.411,-0.016" Width="164" Height="35" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2"/>
+                    <Label Content="Password :" HorizontalAlignment="Left" Margin="96,68.6,0,32" Width="164" FontSize="20" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txt_Username" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="44,14.6,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txt_Password" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="44,4.8,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" InputScope="Password"/>
+                    <Button x:Name="btn_Login" Grid.ColumnSpan="3" Content="Login" Grid.Column="1" HorizontalAlignment="Left" Margin="210,36.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="137" Click="btn_Login_Click"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="MainMenuTab" Visibility="Visible" Header="Main Menu" Margin="22.6,0,-22.4,0" HorizontalAlignment="Left" Width="75">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="208" />
+                        <ColumnDefinition Width="109*" />
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="93*"/>
+                        <ColumnDefinition Width="68*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="48" />
+                        <RowDefinition Height="Auto" MinHeight="46.4" />
+                        <RowDefinition Height="69*" />
+                        <RowDefinition Height="69*"/>
+                        <RowDefinition Height="46*"/>
+                        <RowDefinition Height="53*"/>
+                        <RowDefinition Height="66*"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btn_GotoSignUp" Content="Sign up new member" Grid.Column="1" HorizontalAlignment="Left" Margin="54,14,0,0" Grid.Row="1" VerticalAlignment="Top" Width="218" Click="btn_Login_Click" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btn_GotoRecords" Content="All Records" Grid.Column="1" HorizontalAlignment="Left" Margin="54,36.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="218" Click="btn_Login_Click" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btn_GotoHelp" Content="Help?" Grid.Column="1" HorizontalAlignment="Left" Margin="54,36.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="218" Click="btn_Login_Click" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btn_Exit" Content="EXIT" Grid.Column="1" Margin="54,46,172,21.2" Grid.Row="4" Grid.RowSpan="2" Height="Auto" Grid.ColumnSpan="3"/>
+                </Grid>
+            </TabItem>
+
+
         </TabControl>
     </Grid>
 </Window>

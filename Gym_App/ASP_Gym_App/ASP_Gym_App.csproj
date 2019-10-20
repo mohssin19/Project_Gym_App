@@ -220,6 +220,7 @@
     <Content Include="Views\HealthRecords\Details.cshtml" />
     <Content Include="Views\HealthRecords\Edit.cshtml" />
     <Content Include="Views\HealthRecords\Index.cshtml" />
+    <Content Include="Views\HealthRecords\CreateBackup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

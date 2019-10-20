@@ -30,16 +30,22 @@ namespace Gym_App
         public static double CurrentHeight;
         public static double CurrentBMI;
 
+        public static string[] UN = new string[3] { "admin", "test", "user" };
+        public static string PW = "password123";
 
         public MainWindow()
         {
             InitializeComponent();
+
             // BMI & BMR Text Info Hidden
             BMI_INFO.Visibility = Visibility.Hidden;
             BMR_INFO.Visibility = Visibility.Hidden;
+            lbl_Kcal_Info.Visibility = Visibility.Hidden;
+
             // Manual Tab Control On main window
-            Tab1.IsSelected = true;
-            Tab2.IsSelected = false;
+            //Tab1.IsSelected = true;
+            //Tab2.IsSelected = false;
+            Tab0.IsSelected = true;
 
             // Loading List on intialize
             //List<object> allRecords = new List<object>();
@@ -105,14 +111,6 @@ namespace Gym_App
             }
 
         }
-
-
-
-        private void btn_generateId_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void TabController_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -131,8 +129,8 @@ namespace Gym_App
                 User CurrentUser = dbc.Users.Where(u => u.UserId == CurrentUserId).FirstOrDefault<User>();
                 HealthRecord CurrentRecord = dbc.HealthRecords.Where(r => r.HealthRecordId == CurrentHealthRecordId).FirstOrDefault<HealthRecord>();
 
-               // MessageBox.Show(CurrentHealthRecordId.ToString());
 
+                // BMI CALUCULATIONS
                 double bmi = Math.Round(((CurrentWeight / CurrentHeight / CurrentHeight) * 10000), 2);
                 CurrentRecord.BMI = (decimal)bmi;
                 BMI_Value.Text = CurrentRecord.BMI.ToString();
@@ -152,11 +150,13 @@ namespace Gym_App
                     BMR_Value.Text = CurrentRecord.BMR.ToString();
                 }
 
-
+               
                 dbc.SaveChanges();
                 MessageBox.Show($"User: {CurrentUser.FirstName} , health calculations added!");
+                Tab3.IsSelected = true;
             }
         }
+
 
         private void lbl_BMI_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -185,14 +185,84 @@ namespace Gym_App
             BMR_INFO.Visibility = Visibility.Hidden;
         }
 
-        private void rdo_Opt1_Checked(object sender, RoutedEventArgs e)
+
+        //----------------------------- ALL KCAL FUNCTIONS-------------------------------//
+        public double CalculateKcal(decimal cal)
         {
             using (var dbc = new GymAppDBEntities())
             {
-                HealthRecord CurrentRecord = dbc.HealthRecords.Where(r => r.HealthRecordId == CurrentHealthRecordId).FirstOrDefault<HealthRecord>();
-                //double kcal = CurrentRecord.BMI * 1.2;
-            }
 
+                HealthRecord CurrentRecord = dbc.HealthRecords.Where(r => r.HealthRecordId == CurrentHealthRecordId).FirstOrDefault<HealthRecord>();
+
+                if (CurrentRecord.BMR != null)
+                {
+                    double Kcal = (double)(CurrentRecord.BMR * cal);
+                    CurrentRecord.KCAL = (decimal)Kcal;
+                    return Kcal;
+                }
+
+            }
+            return 0;
+        }
+        public void SetKcalText(string Kcal)
+        {
+            txt_Kcal.Text = Kcal.ToString();
+
+        }
+        private void rdo_Opt1_Checked(object sender, RoutedEventArgs e)
+        {
+            double Kcal = CalculateKcal(1.2m);
+            SetKcalText(Kcal.ToString());
+        }
+        private void rdo_Opt2_Checked(object sender, RoutedEventArgs e)
+        {
+            double Kcal = CalculateKcal(1.375m);
+            SetKcalText(Kcal.ToString());
+        }
+
+        private void rdo_Opt3_Checked(object sender, RoutedEventArgs e)
+        {
+            double Kcal = CalculateKcal(1.55m);
+            SetKcalText(Kcal.ToString());
+        }
+
+        private void rdo_Opt4_Checked(object sender, RoutedEventArgs e)
+        {
+            double Kcal = CalculateKcal(1.725m);
+            SetKcalText(Kcal.ToString());
+        }
+
+        private void rdo_Opt5_Checked(object sender, RoutedEventArgs e)
+        {
+            double Kcal = CalculateKcal(1.9m);
+            SetKcalText(Kcal.ToString());
+        }
+
+        private void lbl_Kcal_MouseEnter(object sender, MouseEventArgs e)
+        {
+            lbl_Kcal_Info.Visibility = Visibility.Visible;
+        }
+
+        private void lbl_Kcal_MouseLeave(object sender, MouseEventArgs e)
+        {
+            lbl_Kcal_Info.Visibility = Visibility.Hidden;
+        }
+
+        private void btn_Login_Click(object sender, RoutedEventArgs e)
+        {
+            if (txt_Username.Text == UN[0] || txt_Username.Text == UN[1] || txt_Username.Text == UN[2])
+            {
+                if (txt_Password.Text == PW)
+                {
+                    MainMenuTab.IsSelected = true;
+                }
+                else
+                {
+                    MessageBox.Show("Username name or password is incorrect");
+                    txt_Username.Focus();
+                }
+            }
         }
     }
 }
+

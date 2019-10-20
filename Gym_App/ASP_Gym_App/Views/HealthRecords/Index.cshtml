@@ -12,6 +12,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Age)
         </th>
         <th>
@@ -29,47 +35,41 @@
         <th>
             @Html.DisplayNameFor(model => model.KCAL)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TargetBMI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Height)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BMR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BMI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KCAL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TargetBMI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HealthRecordId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HealthRecordId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HealthRecordId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.User.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Age)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Weight)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Height)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BMR)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BMI)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.KCAL)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.HealthRecordId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.HealthRecordId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.HealthRecordId })
+    </td>
+</tr>
 }
 
 </table>
