@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GymAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GymAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="HealthRecord">
           <Key>
             <PropertyRef Name="HealthRecordId" />
@@ -12,8 +21,8 @@
           <Property Name="HealthRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" />
           <Property Name="Age" Type="int" />
-          <Property Name="Weight" Type="decimal" Precision="5" Scale="2" />
-          <Property Name="Height" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Height" Type="decimal" Precision="10" Scale="2" />
           <Property Name="BMR" Type="decimal" Precision="10" Scale="2" />
           <Property Name="BMI" Type="decimal" Precision="10" Scale="2" />
           <Property Name="KCAL" Type="decimal" Precision="10" Scale="2" />
@@ -30,7 +39,7 @@
           <Property Name="TelephoneNumber" Type="char" MaxLength="11" />
           <Property Name="Email" Type="nvarchar" MaxLength="40" />
         </EntityType>
-        <Association Name="FK__HealthRec__UserI__36B12243">
+        <Association Name="FK__HealthRec__UserI__1273C1CD">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="HealthRecord" Type="Self.HealthRecord" Multiplicity="*" />
           <ReferentialConstraint>
@@ -43,15 +52,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GymAppDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealthRecord" EntityType="Self.HealthRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HealthRec__UserI__36B12243" Association="Self.FK__HealthRec__UserI__36B12243">
+          <AssociationSet Name="FK__HealthRec__UserI__1273C1CD" Association="Self.FK__HealthRec__UserI__1273C1CD">
             <End Role="Users" EntitySet="Users" />
             <End Role="HealthRecord" EntitySet="HealthRecord" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GymAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -62,8 +71,8 @@
           <Property Name="HealthRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="Age" Type="Int32" />
-          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Height" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="BMR" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="BMI" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="KCAL" Type="Decimal" Precision="10" Scale="2" />
@@ -101,7 +110,17 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="HealthRecord" EntitySet="HealthRecords" />
           </AssociationSet>
+          <EntitySet Name="Admins" EntityType="GymAppDBModel.Admin" />
         </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="StaffID" />
+          </Key>
+          <Property Name="StaffID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -132,6 +151,16 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="GymAppDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="StaffID" ColumnName="StaffID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

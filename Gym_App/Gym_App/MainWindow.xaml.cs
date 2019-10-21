@@ -50,22 +50,22 @@ namespace Gym_App
             // Loading List on intialize
             //List<object> allRecords = new List<object>();
             
-            using (var db = new GymAppDBEntities())
-            {
-                var allRecords = db.Users.Join(db.HealthRecords, u => u.UserId, hr => 
-                hr.UserId, (u, hr) => new { u, hr }).Select(ar => 
-                new {UserId = ar.u.UserId, 
-                    FirstName = ar.u.FirstName, LastName = ar.u.LastName, 
-                    Address = ar.u.Address, Email = ar.u.Email, TelephoneNumber = ar.u.TelephoneNumber,
-                    HealthRecordId = ar.hr.HealthRecordId,
-                    Age = ar.hr.Age, Weight = ar.hr.Weight, Height = ar.hr.Height,
-                    BMI = ar.hr.BMI, BMR = ar.hr.BMR,
-                })
-                .ToList();
-                //Users = db.Users.ToList();
-                //HealthRecords = db.HealthRecords.ToList();
-                AllMembersView.ItemsSource = allRecords;
-            }
+            //using (var db = new GymAppDBEntities())
+            //{
+            //    var allRecords = db.Users.Join(db.HealthRecords, u => u.UserId, hr => 
+            //    hr.UserId, (u, hr) => new { u, hr }).Select(ar => 
+            //    new {UserId = ar.u.UserId, 
+            //        FirstName = ar.u.FirstName, LastName = ar.u.LastName, 
+            //        Address = ar.u.Address, Email = ar.u.Email, TelephoneNumber = ar.u.TelephoneNumber,
+            //        HealthRecordId = ar.hr.HealthRecordId,
+            //        Age = ar.hr.Age, Weight = ar.hr.Weight, Height = ar.hr.Height,
+            //        BMI = ar.hr.BMI, BMR = ar.hr.BMR,
+            //    })
+            //    .ToList();
+            //    //Users = db.Users.ToList();
+            //    //HealthRecords = db.HealthRecords.ToList();
+            //    AllMembersView.ItemsSource = allRecords;
+            //}
 
             // manual method
             //rabbits.ForEach(rabbit => ListBoxRabbits.Items.Add(rabbit))
@@ -248,6 +248,7 @@ namespace Gym_App
             lbl_Kcal_Info.Visibility = Visibility.Hidden;
         }
 
+       
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {
             if (txt_Username.Text == UN[0] || txt_Username.Text == UN[1] || txt_Username.Text == UN[2])
@@ -268,12 +269,33 @@ namespace Gym_App
 
         private void btn_GotoRecords_Click(object sender, RoutedEventArgs e)
         {
+            using (var db = new GymAppDBEntities())
+            {
+                var allRecords = db.Users.Join(db.HealthRecords, u => u.UserId, hr =>
+                hr.UserId, (u, hr) => new { u, hr }).Select(ar =>
+                new {
+                    UserId = ar.u.UserId,
+                    FirstName = ar.u.FirstName,
+                    LastName = ar.u.LastName,
+                    Address = ar.u.Address,
+                    Email = ar.u.Email,
+                    TelephoneNumber = ar.u.TelephoneNumber,
+                    HealthRecordId = ar.hr.HealthRecordId,
+                    Age = ar.hr.Age,
+                    Weight = ar.hr.Weight,
+                    Height = ar.hr.Height,
+                    BMI = ar.hr.BMI,
+                    BMR = ar.hr.BMR,
+                })
+                .ToList();
+                AllMembersView.ItemsSource = allRecords;
+            }
             Tab3.IsSelected = true;
         }
 
         private void btn_GotoSignUp_Click(object sender, RoutedEventArgs e)
         {
-            Tab0.IsSelected = true;
+            Tab1.IsSelected = true;
         }
 
         private void btn_Exit_Click(object sender, RoutedEventArgs e)

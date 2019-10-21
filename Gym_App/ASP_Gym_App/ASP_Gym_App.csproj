@@ -128,11 +128,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HealthRecordsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>GymDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GymDbModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -162,6 +166,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\SiteBackup.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -221,6 +226,9 @@
     <Content Include="Views\HealthRecords\Edit.cshtml" />
     <Content Include="Views\HealthRecords\Index.cshtml" />
     <Content Include="Views\HealthRecords\CreateBackup.cshtml" />
+    <Content Include="Views\Admin\AddOrEdit.cshtml" />
+    <Content Include="Views\Admin\Index2.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

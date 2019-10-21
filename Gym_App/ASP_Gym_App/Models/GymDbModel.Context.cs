@@ -27,5 +27,6 @@ namespace ASP_Gym_App.Models
     
         public virtual DbSet<HealthRecord> HealthRecords { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
     }
 }

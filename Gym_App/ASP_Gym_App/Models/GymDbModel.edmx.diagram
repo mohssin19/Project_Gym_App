@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="GymAppDBModel.HealthRecord" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="GymAppDBModel.User" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="GymAppDBModel.FK__HealthRec__UserI__36B12243" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GymAppDBModel.Admin" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
