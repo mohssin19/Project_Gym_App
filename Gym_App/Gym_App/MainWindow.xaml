@@ -172,6 +172,7 @@
                     <TextBox x:Name="txt_Username" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="44,14.6,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="txt_Password" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="44,4.8,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" InputScope="Password"/>
                     <Button x:Name="btn_Login" Grid.ColumnSpan="3" Content="Login" Grid.Column="1" HorizontalAlignment="Left" Margin="210,36.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="137" Click="btn_Login_Click"/>
+                    <PasswordBox x:Name="pbx_Password" Grid.Column="1" HorizontalAlignment="Left" Margin="44,48.8,0,0" Grid.Row="3" VerticalAlignment="Top"/>
 
                 </Grid>
             </TabItem>
@@ -194,10 +195,10 @@
                         <RowDefinition Height="53*"/>
                         <RowDefinition Height="66*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="btn_GotoSignUp" Content="Sign up new member" Grid.Column="1" HorizontalAlignment="Left" Margin="54,14,0,0" Grid.Row="1" VerticalAlignment="Top" Width="218" Click="btn_Login_Click" Grid.ColumnSpan="3"/>
-                    <Button x:Name="btn_GotoRecords" Content="All Records" Grid.Column="1" HorizontalAlignment="Left" Margin="54,36.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="218" Click="btn_Login_Click" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btn_GotoSignUp" Content="Sign up new member" Grid.Column="1" HorizontalAlignment="Left" Margin="54,14,0,0" Grid.Row="1" VerticalAlignment="Top" Width="218"  Grid.ColumnSpan="3"  Click="btn_GotoSignUp_Click"/>
+                    <Button x:Name="btn_GotoRecords" Content="All Records" Grid.Column="1" HorizontalAlignment="Left" Margin="54,36.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="218" Grid.ColumnSpan="3" Click="btn_GotoRecords_Click"/>
                     <Button x:Name="btn_GotoHelp" Content="Help?" Grid.Column="1" HorizontalAlignment="Left" Margin="54,36.8,0,0" Grid.Row="3" VerticalAlignment="Top" Width="218" Click="btn_Login_Click" Grid.ColumnSpan="3"/>
-                    <Button x:Name="btn_Exit" Content="EXIT" Grid.Column="1" Margin="54,46,172,21.2" Grid.Row="4" Grid.RowSpan="2" Height="Auto" Grid.ColumnSpan="3"/>
+                    <Button x:Name="btn_Exit" Content="EXIT" Grid.Column="1" Margin="54,46,172,21.2" Grid.Row="4" Grid.RowSpan="2" Height="Auto" Grid.ColumnSpan="3" Click="btn_Exit_Click"/>
                 </Grid>
             </TabItem>
 

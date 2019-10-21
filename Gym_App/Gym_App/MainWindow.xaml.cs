@@ -30,8 +30,8 @@ namespace Gym_App
         public static double CurrentHeight;
         public static double CurrentBMI;
 
-        public static string[] UN = new string[3] { "admin", "test", "user" };
-        public static string PW = "password123";
+        public static string[] UN = new string[2] { "admin", "staff"};
+        public static string[] PW = new string[2] { "admin", "staff" };
 
         public MainWindow()
         {
@@ -252,7 +252,7 @@ namespace Gym_App
         {
             if (txt_Username.Text == UN[0] || txt_Username.Text == UN[1] || txt_Username.Text == UN[2])
             {
-                if (txt_Password.Text == PW)
+                if (/*txt_Password.Text*/ pbx_Password.Password == PW[0] || pbx_Password.Password == PW[1])
                 {
                     MainMenuTab.IsSelected = true;
                 }
@@ -262,6 +262,23 @@ namespace Gym_App
                     txt_Username.Focus();
                 }
             }
+        }
+
+        
+
+        private void btn_GotoRecords_Click(object sender, RoutedEventArgs e)
+        {
+            Tab3.IsSelected = true;
+        }
+
+        private void btn_GotoSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            Tab0.IsSelected = true;
+        }
+
+        private void btn_Exit_Click(object sender, RoutedEventArgs e)
+        {
+             Application.Current.MainWindow.Close();
         }
     }
 }
